@@ -4,13 +4,15 @@ class Usuarios{
     protected $id;
     protected $nombre;
     protected $email;
+    protected $password;
     protected $rol;
 
-    public function __construct($id,$nombre,$email,$rol){
+    public function __construct($id,$nombre,$email,$password,$rol){
         
         $this->id=$id;
         $this->nombre=$nombre;
         $this->email=$email;
+        $this->password=$password;
         $this->rol=$rol;
     }
 
@@ -84,5 +86,23 @@ class Usuarios{
         $this->rol = $rol;
 
         
+    }
+
+    /**
+     * Get the value of password
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Set the value of password
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+       
     }
 }
