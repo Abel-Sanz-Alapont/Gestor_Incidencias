@@ -1,12 +1,12 @@
 <?php
 
-class Clientes extends Usuario{
+class Clientes extends Usuarios{
     protected $departamento;
     protected $telefono;
 
-    public function __construct($email, $password, $departamento, $telefono, $id = 0)
+    public function __construct($nombre, $email, $password, $departamento, $telefono, $id = 0)
     {
-        parent::__construct($email, $password, $id);
+        parent::__construct($id, $nombre, $email, $password, 'cliente');
 
         $this->departamento=$departamento;
         $this->telefono=$telefono;

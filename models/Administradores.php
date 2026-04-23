@@ -1,13 +1,13 @@
 <?php
 
-class Administradores extends Usuario{
+class Administradores extends Usuarios{
 
     protected $numeroEmpleado;
     protected $especialidad;
 
-    public function __construct($email, $password, $numeroEmpleado,$especialidad, $id = 0)
+    public function __construct($nombre, $email, $password, $numeroEmpleado,$especialidad, $id = 0)
     {
-        parent::__construct($email, $password, $id);
+        parent::__construct($id,$nombre,$email, $password, 'administrador');
 
         $this->numeroEmpleado=$numeroEmpleado;
         $this->especialidad=$especialidad;
