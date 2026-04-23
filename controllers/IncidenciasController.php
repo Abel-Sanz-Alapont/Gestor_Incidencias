@@ -43,4 +43,18 @@ class IncidenciasController
             require_once "views/crear_incidencia.php";
         }
     }
+
+    public function actualizar(){
+        if ($_SESSION['rol'] !== 'administrador') {
+            header("Location: index.php?accion=listar");
+            exit();
+        }
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $id=$_POST['id_incidencias'];
+            $nuevoEstado= $_POST['nuevoestado'];
+            if ($this->gestor->actualizarEstado($id, $nuevoEstado)) {
+                header("Location:index.php?accion=listar");
+            }
+        }
+    }
 }
