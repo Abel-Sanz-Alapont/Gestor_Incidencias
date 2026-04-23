@@ -13,4 +13,40 @@ class Clientes extends Usuario{
 
     }
  
+
+    /**
+     * Get the value of departamento
+     */
+    public function getDepartamento()
+    {
+        return $this->departamento;
+    }
+
+    /**
+     * Set the value of departamento
+     */
+    public function setDepartamento($departamento)
+    {
+        $this->departamento = $departamento;
+
+        
+    }
+
+    /**
+     * Get the value of telefono
+     */
+    public function getTelefono()
+    {
+        return $this->telefono;
+    }
+
+    /**
+     * Set the value of telefono
+     */
+    public function setTelefono($telefono)
+    {
+        $this->telefono = $telefono;
+
+        
+    }
 }
