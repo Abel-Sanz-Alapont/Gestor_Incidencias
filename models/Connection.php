@@ -36,4 +36,12 @@ class Connection
     {
         $this->conn=null;
     }
+
+    /**
+     * Get the value of conn
+     */
+    public function getConn()
+    {
+        return $this->conn;
+    }
 }
