@@ -83,6 +83,7 @@
                                             </select>
                                             <button type="submit">Guardar</button>
                                         </form>
+                                        <a href="index.php?accion=eliminar&id=<?php echo $incidencia['id']; ?>">Eliminar</a>
                                     <?php else: ?>
                                         <span class="estado-texto"><?php echo $incidencia['estado']; ?></span>
                                     <?php endif; ?>

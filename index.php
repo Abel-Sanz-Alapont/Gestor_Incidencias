@@ -6,7 +6,7 @@ session_start();
 $accion = $_GET['accion'] ?? 'login';
 
 switch ($accion) {
-    
+
     case 'login':
         $usuarioController = new UsuariosController();
         $usuarioController->login();
@@ -25,6 +25,7 @@ switch ($accion) {
     case 'listar':
     case 'crear':
     case 'actualizar':
+    case 'eliminar':
         if (!isset($_SESSION['id'])) {
             header("Location: index.php?accion=login");
             exit();
@@ -36,9 +37,12 @@ switch ($accion) {
             $iController->listar();
         } elseif ($accion === 'crear') {
             $iController->crear();
-        }elseif ($accion === 'actualizar') {
+        } elseif ($accion === 'actualizar') {
             $iController->actualizar();
+        } elseif ($accion === 'eliminar') {
+            $iController->eliminar();
         }
+
         break;
 
     default:

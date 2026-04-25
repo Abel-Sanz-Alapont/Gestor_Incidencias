@@ -49,4 +49,11 @@ class IncidenciasManager
         return $stmt->execute([$estado, $id]);
         
     }
+
+    public function eliminarIncidencia($id){
+        $sql = "DELETE FROM incidencias WHERE id=?";
+        $stmt =$this->db->prepare($sql);
+        return $stmt->execute([$id]);
+        
+    }
 }
