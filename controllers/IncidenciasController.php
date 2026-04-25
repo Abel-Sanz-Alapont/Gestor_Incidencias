@@ -44,17 +44,14 @@ class IncidenciasController
         }
     }
 
-    public function actualizar(){
-        if ($_SESSION['rol'] !== 'administrador') {
-            header("Location: index.php?accion=listar");
-            exit();
-        }
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $id=$_POST['id_incidencias'];
-            $nuevoEstado= $_POST['nuevoestado'];
-            if ($this->gestor->actualizarEstado($id, $nuevoEstado)) {
-                header("Location:index.php?accion=listar");
-            }
-        }
+    public function actualizar() {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $id = $_POST['id_incidencia'];
+        $nuevoEstado = $_POST['nuevo_estado'];
+        $this->gestor->actualizarEstado($nuevoEstado, $id); 
+        
+        header("Location: index.php?accion=listar");
+        exit();
     }
+}
 }
