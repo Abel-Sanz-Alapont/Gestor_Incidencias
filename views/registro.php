@@ -10,32 +10,26 @@
         <h2>Crear Cuenta de Cliente</h2>
 
         <form action="index.php?accion=registro" method="POST">
-            <div>
-                <label for="nombre">Nombre completo:</label><br>
-                <input type="text" name="nombre" id="nombre" required>
-            </div>
+            <label>Registrase como:</label>
+            <select name="rol" id="rol">
+                <option value="cliente">Cliente</option>
+                <option value="administrador">administrador</option>
+            </select><br>
+                <br>
+                <input type="text" name="nombre" required placeholder="Nombre Completo"><br>
+                <input type="email" name="email"  required placeholder="Email"><br>
+                <input type="password" name="password"  required placeholder="Contraseña"><br>
+
             <br>
-            <div>
-                <label for="email">Email:</label><br>
-                <input type="email" name="email" id="email" required>
-            </div>
+                <label>Clientes:</label><br>
+                <input type="text" name="departamento" placeholder="Departamento"><br>
+                <input type="text" name="telefono"  placeholder="Telefono"><br>
             <br>
-            <div>
-                <label for="password">Contraseña:</label><br>
-                <input type="password" name="password" id="password" required>
-            </div>
+                <label>Administradores:</label><br>
+                <input type="text" name="numero_empleado" placeholder="Nº Empleado"><br>
+                <input type="text" name="especialidad" placeholder="Especialidad"><br>
             <br>
-            <div>
-                <label for="departamento">Departamento:</label><br>
-                <input type="text" name="departamento" id="departamento">
-            </div>
-            <br>
-            <div>
-                <label for="telefono">Teléfono:</label><br>
-                <input type="text" name="telefono" id="telefono">
-            </div>
-            <br>
-            <button type="submit">Registrarme</button>
+            <button type="submit">Registrar Usuario</button>
         </form>
 
         <div>
