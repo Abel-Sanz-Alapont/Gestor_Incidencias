@@ -42,4 +42,11 @@ class IncidenciasManager
         
         return $stmt->execute([$id_cliente, $titulo, $descripcion]);
     }
+
+    public function actualizarEstado($estado, $id){
+        $sql= "UPDATE incidencias SET estado = ? WHERE id= ?";
+        $stmt = $this->db->prepare($sql);
+        return $stmt->execute([$estado, $id]);
+        
+    }
 }
