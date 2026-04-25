@@ -30,15 +30,9 @@ class UsuariosController
 
                 header("Location: index.php?accion=listar");
                 exit();
-            } else {
-
-                $error = "Email o contraseña incorrectos.";
-                require_once 'views/login.php';
             }
-        } else {
-
-            require_once 'views/login.php';
         }
+         include 'views/login.php';
     }
 
 
@@ -55,15 +49,17 @@ class UsuariosController
                 $numero_empleado = $_POST['numero_empleado'];
                 $especialidad = $_POST['especialidad'];
 
-                $administradorRegistro = $this->manager->registrarAdministrador($nombre, $email, $password, $numero_empleado, $especialidad);
+                $this->manager->registrarAdministrador($nombre, $email, $password, $numero_empleado, $especialidad);
             } else {
 
                 $departamento = $_POST['departamento'];
                 $telefono = $_POST['telefono'];
-                $clienteRegistro = $this->manager->registrarAdministrador($nombre, $email, $password, $departamento, $telefono);
+                $this->manager->registrarCliente($nombre, $email, $password, $departamento, $telefono);
             }
             header("Location: index.php?accion=login");
+            exit();
         }
+        include "views/registro.php";
     }
 
     public function logout()
