@@ -17,7 +17,7 @@ class UsuariosController
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $email = $_POST['email'];
             $password = $_POST['password'];
-            $recordar =$_POST['recodar'];
+            $recordar =isset($_POST['recordar']);
 
 
             $usuario = $this->manager->verificarLogin($email, $password);
@@ -37,7 +37,7 @@ class UsuariosController
                             'expires'=>time() +(86400 *30),
                             'path'=>'/',
                             'httponly'=>true,
-                            'samesite'=>'Stric'
+                            'samesite'=>'Strict'
                         ]
                     );
                 }
