@@ -3,9 +3,29 @@ require_once 'autoload.php';
 
 session_start();
 
-$accion = $_GET['accion'] ?? 'login';
+
 $iController = new IncidenciasController();
 
+if (!isset($_SESSION['id']) && isset($_COOKIE['usuario_login'])) {
+
+    $emailRecuperado = base64_decode($_COOKIE['usuario_login']);
+
+    $gestorUsuario = new GestorUsuarios();
+    $usuario = $GestorUsuarios->buscarUsuario($emailRecuperado);
+
+    if ($usuario) {
+
+        $_SESSION['id'] = $usuario = ['id'];
+        $_SESSION['nombre'] = $usuario = ['nombre'];
+        $_SESSION['rol'] = $usuario = ['id'];
+
+    }else {
+        setcookie('usuario_login', '', time() - 3600, '/');
+    }
+
+}
+
+$accion = $_GET['accion'] ?? 'login';
 switch ($accion) {
 
     case 'login':
@@ -32,7 +52,7 @@ switch ($accion) {
             exit();
         }
 
-    
+
         if ($accion === 'listar') {
             $iController->listar();
         } elseif ($accion === 'crear') {
