@@ -79,7 +79,13 @@ class UsuariosController
 
     public function logout()
     {
+        $_SESSION=[];
         session_destroy();
+
+        if (isset($_COOKIE['usuario_login'])) {
+            setcookie('usuario_login', '', time() - 360000, '/');
+        }
+
         header("Location: index.php?accion=login");
         exit();
     }
