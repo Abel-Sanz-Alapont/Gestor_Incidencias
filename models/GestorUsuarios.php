@@ -45,4 +45,12 @@ class GestorUsuarios
         }
         return false;
     }
+
+    public function buscarUsuario($email){
+        $sql ="SELECT * FROM usuarios WHERE email = ?";
+        $stmt =$this->db->prepare($sql);;
+        $stmt->execute([$email]);
+        
+        return $stmt->fecth(PDO::FETCH_ASSOC);
+    }
 }

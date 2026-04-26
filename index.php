@@ -4,6 +4,7 @@ require_once 'autoload.php';
 session_start();
 
 $accion = $_GET['accion'] ?? 'login';
+$iController = new IncidenciasController();
 
 switch ($accion) {
 
@@ -31,8 +32,7 @@ switch ($accion) {
             exit();
         }
 
-        $iController = new IncidenciasController();
-
+    
         if ($accion === 'listar') {
             $iController->listar();
         } elseif ($accion === 'crear') {
