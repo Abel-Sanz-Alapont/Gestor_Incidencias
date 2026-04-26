@@ -17,6 +17,7 @@ class UsuariosController
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $email = $_POST['email'];
             $password = $_POST['password'];
+            $recordar =$_POST['recodar'];
 
 
             $usuario = $this->manager->verificarLogin($email, $password);
@@ -26,6 +27,20 @@ class UsuariosController
                 $_SESSION['id'] = $usuario['id'];
                 $_SESSION['nombre'] = $usuario['nombre'];
                 $_SESSION['rol'] = $usuario['rol'];
+                if ($recordar) {
+                    $token =base64_encode($usuario['email']);
+
+                    setcookie(
+                        "usuario_login",
+                        $token,
+                        [
+                            'expires'=>time() +(86400 *30),
+                            'path'=>'/',
+                            'httponly'=>true,
+                            'samesite'=>'Stric'
+                        ]
+                    );
+                }
 
 
                 header("Location: index.php?accion=listar");
