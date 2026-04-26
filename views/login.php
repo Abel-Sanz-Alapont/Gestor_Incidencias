@@ -19,6 +19,11 @@
                 <label for="password">Contraseña:</label><br>
                 <input type="password" name="password" id="password" required>
             </div>
+            <div>
+                <label>
+                    <input type="checkbox" name="recordar"> Recordar Sesion
+                </label>
+            </div>
             <br>
             <button type="submit">Iniciar Sesión</button>
         </form>
