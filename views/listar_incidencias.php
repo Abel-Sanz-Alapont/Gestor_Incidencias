@@ -1,35 +1,17 @@
+<?php
+$nombreCookieUsuario = 'color_tema' . $_SESSION['id'];
+$colorActual = $_COOKIE[$nombreCookieUsuario] ?? '#ffffff';
+?>
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <title>Panel de Incidencias</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        th,
-        td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f4f4f4;
-        }
-
-        .estado-texto {
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-    </style>
+    <link rel="stylesheet" href="css/estilo.css">
 </head>
 
-<body>
+<body style="background-color: <?php echo $colorActual ?>;">
 
     <div>
         <header>
@@ -39,11 +21,19 @@
             </div>
             <div>
                 <p>
+
                     <a href="index.php?accion=logout">Cerrar Sesión</a>
                     <?php if ($rol === 'cliente'): ?>
                         | <a href="index.php?accion=crear"><strong>+ Añadir Nueva Incidencia</strong></a>
                     <?php endif; ?>
                 </p>
+            </div>
+            <div>
+                <form action="index.php?accion=cambiar_color" method="POST">
+                    <label for="escogerColor">Ajustes Usuario</label>
+                    <input type="color" id="escogerColor" name="color" value="<?php echo $colorActual; ?>">
+                    <button type="submit">Cambiar Ajustes</button>
+                </form>
             </div>
         </header>
 
@@ -57,7 +47,7 @@
                             <th>ID</th>
                             <th>Título</th>
                             <th>Descripción</th>
-                            <th>Estado</th>
+                            <th>Acciones</th>
                             <?php if ($rol === 'administrador'): ?>
                                 <th>Cliente</th>
                             <?php endif; ?>
@@ -81,11 +71,11 @@
 
                                                 <option value="resuelta" <?php echo $incidencia['estado'] == 'resuelta' ? 'selected' : ''; ?>>Resuelta</option>
                                             </select>
-                                            <button type="submit">Guardar</button>
+                                            <button type="submit">Actualizar Registro</button>
                                         </form>
-                                        <a href="index.php?accion=eliminar&id=<?php echo $incidencia['id']; ?>">Eliminar</a>
+                                        <button type="submit"><a   href="index.php?accion=eliminar&id=<?php echo $incidencia['id']; ?>">Eliminar Registro</a></button>
                                     <?php else: ?>
-                                        <span class="estado-texto"><?php echo $incidencia['estado']; ?></span>
+                                        <?php echo $incidencia['estado']; ?>
                                     <?php endif; ?>
                                 </td>
 

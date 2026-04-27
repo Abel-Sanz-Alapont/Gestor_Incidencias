@@ -1,0 +1,24 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color:white;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+
+}
+
+th {
+    background-color: gray;
+    text-align: center;
+}
+
+.estado-texto {
+    font-weight: bold;
+    text-transform: uppercase;
+}
