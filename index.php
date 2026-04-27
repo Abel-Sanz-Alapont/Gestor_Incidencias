@@ -11,13 +11,13 @@ if (!isset($_SESSION['id']) && isset($_COOKIE['usuario_login'])) {
     $emailRecuperado = base64_decode($_COOKIE['usuario_login']);
 
     $gestorUsuario = new GestorUsuarios();
-    $usuario = $GestorUsuarios->buscarUsuario($emailRecuperado);
+    $usuario = $gestorUsuario->buscarUsuario($emailRecuperado);
 
     if ($usuario) {
 
-        $_SESSION['id'] = $usuario = ['id'];
-        $_SESSION['nombre'] = $usuario = ['nombre'];
-        $_SESSION['rol'] = $usuario = ['id'];
+        $_SESSION['id'] = $usuario['id'];
+        $_SESSION['nombre'] = $usuario['nombre'];
+        $_SESSION['rol'] = $usuario['rol'];
 
     }else {
         setcookie('usuario_login', '', time() - 3600, '/');
@@ -47,12 +47,11 @@ switch ($accion) {
     case 'crear':
     case 'actualizar':
     case 'eliminar':
+    case 'cambiar_color':
         if (!isset($_SESSION['id'])) {
             header("Location: index.php?accion=login");
             exit();
         }
-
-
         if ($accion === 'listar') {
             $iController->listar();
         } elseif ($accion === 'crear') {
@@ -61,6 +60,8 @@ switch ($accion) {
             $iController->actualizar();
         } elseif ($accion === 'eliminar') {
             $iController->eliminar();
+        }elseif ($accion === 'cambiar_color') {
+            $iController->cambioColor();
         }
 
         break;

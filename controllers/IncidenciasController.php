@@ -61,7 +61,7 @@ class IncidenciasController
         $nuevoColor = $_POST['color'];
         $id_usuario =$_SESSION['id'];
 
-        $cookieUsuario='color_tema_' . $id_usuario;
+        $cookieUsuario='color_tema' . $id_usuario;
 
         setcookie( $cookieUsuario, $nuevoColor, time() + (86400 * 30), '/');
         header("Location: index.php?accion=listar");
