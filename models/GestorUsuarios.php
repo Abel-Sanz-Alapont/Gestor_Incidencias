@@ -51,6 +51,6 @@ class GestorUsuarios
         $stmt =$this->db->prepare($sql);;
         $stmt->execute([$email]);
         
-        return $stmt->fecth(PDO::FETCH_ASSOC);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }
