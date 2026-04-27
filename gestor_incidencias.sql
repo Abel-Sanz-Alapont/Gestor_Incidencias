@@ -22,6 +22,11 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
+-- CREACIÓN DE LA BASE DE DATOS AUTOMÁTICA
+-- --------------------------------------------------------
+CREATE DATABASE IF NOT EXISTS `gestor_incidencias` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+USE `gestor_incidencias`;
+-- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `incidencias`
