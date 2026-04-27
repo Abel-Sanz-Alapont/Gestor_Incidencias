@@ -22,14 +22,14 @@ $colorActual = $_COOKIE[$nombreCookieUsuario] ?? '#ffffff';
                 <p>
                 
                 <form action="index.php?accion=cambiar_color" method="POST">
-                    <label for="escogerColor">Ajustes Usuario</label>
+                    <label for="escogerColor">Seleccionar color fondo</label>
                     <input type="color" id="escogerColor" name="color" value="<?php echo $colorActual; ?>">
-                    <button type="submit">Cambiar Ajustes</button>
+                    <button type="submit">Cambiar</button>
                 </form>
-
+                <hr>
                 <a href="index.php?accion=logout">Cerrar Sesión</a>
                 <?php if ($rol === 'cliente'): ?>
-                    | <a href="index.php?accion=crear"><strong>+ Añadir Nueva Incidencia</strong></a>
+                    | <a href="index.php?accion=crear">Añadir Nueva Incidencia</a>
                 <?php endif; ?>
                 </p>
             </div>
