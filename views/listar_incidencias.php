@@ -15,25 +15,23 @@ $colorActual = $_COOKIE[$nombreCookieUsuario] ?? '#ffffff';
 
     <div>
         <header>
-            <div>
-                <h2>Panel de Incidencias</h2>
+            <div class="usuario">
+                <h1>Panel de Incidencias</h1>
                 <p>Bienvenido, <strong><?php echo $nombre; ?></strong> (<?php echo $rol; ?>)</p>
-            </div>
-            <div>
-                <p>
 
-                    <a href="index.php?accion=logout">Cerrar Sesión</a>
-                    <?php if ($rol === 'cliente'): ?>
-                        | <a href="index.php?accion=crear"><strong>+ Añadir Nueva Incidencia</strong></a>
-                    <?php endif; ?>
-                </p>
-            </div>
-            <div>
+                <p>
+                
                 <form action="index.php?accion=cambiar_color" method="POST">
                     <label for="escogerColor">Ajustes Usuario</label>
                     <input type="color" id="escogerColor" name="color" value="<?php echo $colorActual; ?>">
                     <button type="submit">Cambiar Ajustes</button>
                 </form>
+
+                <a href="index.php?accion=logout">Cerrar Sesión</a>
+                <?php if ($rol === 'cliente'): ?>
+                    | <a href="index.php?accion=crear"><strong>+ Añadir Nueva Incidencia</strong></a>
+                <?php endif; ?>
+                </p>
             </div>
         </header>
 
@@ -73,7 +71,7 @@ $colorActual = $_COOKIE[$nombreCookieUsuario] ?? '#ffffff';
                                             </select>
                                             <button type="submit">Actualizar Registro</button>
                                         </form>
-                                        <button type="submit"><a   href="index.php?accion=eliminar&id=<?php echo $incidencia['id']; ?>">Eliminar Registro</a></button>
+                                        <button type="submit"><a href="index.php?accion=eliminar&id=<?php echo $incidencia['id']; ?>">Eliminar Registro</a></button>
                                     <?php else: ?>
                                         <?php echo $incidencia['estado']; ?>
                                     <?php endif; ?>

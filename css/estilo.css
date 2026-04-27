@@ -3,6 +3,7 @@ table {
     border-collapse: collapse;
     margin-top: 20px;
     background-color:white;
+
 }
 
 th,
@@ -16,9 +17,28 @@ td {
 th {
     background-color: gray;
     text-align: center;
+    color: white;
 }
 
 .estado-texto {
     font-weight: bold;
     text-transform: uppercase;
+}
+.usuario{
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    margin-left: 25%;
+    margin-right: 25%;
+    text-decoration: black;
+    text-align: center;
+    
+   
+}
+a{
+    text-decoration: none;
+    color: #0066cc;
+}
+a:hover{
+    text-decoration: underline;
 }
