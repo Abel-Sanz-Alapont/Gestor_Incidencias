@@ -48,6 +48,7 @@ switch ($accion) {
     case 'actualizar':
     case 'eliminar':
     case 'cambiar_color':
+    case 'buscar':
         if (!isset($_SESSION['id'])) {
             header("Location: index.php?accion=login");
             exit();
@@ -62,6 +63,8 @@ switch ($accion) {
             $iController->eliminar();
         }elseif ($accion === 'cambiar_color') {
             $iController->cambioColor();
+        }elseif ($accion === 'buscar'){
+            $iController->buscar();
         }
 
         break;
