@@ -76,4 +76,23 @@ class IncidenciasController
         header("Location: index.php?accion=listar");
         exit;
     }
+
+    public function buscar(){
+        if ($_SERVER['REQUEST_METHOD']==='POST'&& isset ($_POST['id_busqueda'])) {
+            $id_busqueda= $_POST['id_busqueda'];
+            $rol =$_SESSION['rol'];
+            $nombre=$_SESSION['nombre'];
+
+            if ($rol === 'administrador') {
+                $incidencias = $this->gestor->buscarIncidenciaPorIdUsuario($id_busqueda);
+                require_once 'views/listar_incidencias.php';
+            }else{
+                  header("Location: index.php?accion=listar");
+                  exit;
+            }
+        }else {
+              header("Location: index.php?accion=listar");
+        }
+    }
+        
 }
