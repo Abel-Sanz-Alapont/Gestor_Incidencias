@@ -3,7 +3,7 @@ table {
     border-collapse: collapse;
     margin-top: 20px;
 
-    background-color:white;
+    background-color: white;
 
 }
 
@@ -12,7 +12,7 @@ td {
     border: 1px solid #ddd;
     padding: 10px;
     text-align: left;
-    
+
 
 }
 
@@ -21,33 +21,44 @@ th {
     text-align: center;
     color: white;
     font-size: 25px;
-        text-transform: uppercase;
+    text-transform: uppercase;
 }
 
 .estado-texto {
     font-weight: bold;
     text-transform: uppercase;
 }
-.usuario{
+
+.usuario {
     background-color: white;
     font-family: Arial, Helvetica, sans-serif;
-    
     margin-left: 25%;
     margin-right: 25%;
-    text-decoration: black;
     text-align: center;
-        text-transform: uppercase;
-    
-   
+    text-transform: uppercase;
+
+
 }
-a{
+
+a {
     text-decoration: none;
     color: #0066cc;
 }
-a:hover{
+
+a:hover {
     text-decoration: underline;
 }
-td,select{
+
+td,
+select {
     text-align: center;
     text-transform: uppercase;
+}
+
+.panel-busqueda {
+    text-decoration: black;
+    margin-top: 10px;
+    margin-left: 80%;
+    text-align: justify;
+    
 }
