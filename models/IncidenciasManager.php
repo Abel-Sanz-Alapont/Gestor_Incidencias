@@ -32,28 +32,38 @@ class IncidenciasManager
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    
+
     public function crearIncidencia($id_cliente, $titulo, $descripcion)
     {
         $sql = "INSERT INTO incidencias (id_cliente, titulo, descripcion, estado) 
             VALUES (?, ?, ?, 'abierta')";
 
         $stmt = $this->db->prepare($sql);
-        
+
         return $stmt->execute([$id_cliente, $titulo, $descripcion]);
     }
 
-    public function actualizarEstado($estado, $id){
-        $sql= "UPDATE incidencias SET estado = ? WHERE id= ?";
+    public function actualizarEstado($estado, $id)
+    {
+        $sql = "UPDATE incidencias SET estado = ? WHERE id= ?";
         $stmt = $this->db->prepare($sql);
         return $stmt->execute([$estado, $id]);
-        
     }
 
-    public function eliminarIncidencia($id){
+    public function eliminarIncidencia($id)
+    {
         $sql = "DELETE FROM incidencias WHERE id=?";
-        $stmt =$this->db->prepare($sql);
+        $stmt = $this->db->prepare($sql);
         return $stmt->execute([$id]);
+    }
+
+    public function buscarIncidenciaPorIdUsuario($id_cliente)
+    {
+        $sql = "SELECT incidencias.*, usuarios.nombre AS nombre_cliente FROM incidencias JOIN usuarios ON incidencias.id_cliente = usuarios.id WHERE incidencias.id_cliente = ? ORDER BY incidencias.id DESC";
+        $stmt =$this->db->prepare($sql);
+        $stmt->execute([$id_cliente]);
         
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
     }
 }
