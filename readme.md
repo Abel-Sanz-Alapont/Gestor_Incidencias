@@ -1,25 +1,64 @@
-Pasos para poder utilizar este Repositorio de GIT 
+# Gestor de Incidencias (Arquitectura MVC)
 
-PASO 1: Descargar el reporsitorio GIT o desde Aules
-
-    Descarga este repositorio de GIT o los archivos proporcionados a través de Aules y ubícalos en la carpeta correspondiente de tu servidor local.
-
-PASO 2: Importar la Base de Datos.
-
-    Con el codigo SQL que se proporciona llamado gestor_incidencias.sql , este codigo creara automaticamente la base de datos si no la tienes creada previamente creando tablas y relaciones entre ellas
+Aplicación web desarrollada en PHP para la gestión y seguimiento de incidencias, implementando una arquitectura **Modelo-Vista-Controlador (MVC)** pura. Permite a los usuarios reportar problemas y a los administradores gestionarlos de forma eficiente.
 
 
-Paso 3: Uso de la BD en PHPmyadmin
+## Tecnologías y Patrones de Diseño Utilizados
 
-    La contraseña y el usuario es el proporciando en el archivo conf.json 
-    accedes a http://localhost:8000/
+* **Lenguaje:** PHP 8 / HTML5 / CSS3.
+* **Base de Datos:** MySQL.
+* **Conexión a BD:** PDO implementando el patrón **Singleton** para optimizar y asegurar una única instancia de conexión.
+* **Arquitectura:** MVC con enrutador principal (`index.php`) y carga automática de clases (`autoload.php`).
 
-Paso 4:Como utilizar el Web
+## Características Principales a Evaluar
+  1. **Sistema de Roles (Herencia):** Acceso diferenciado para `Clientes` y `Administradores`.
+  2. **CRUD Completo:** Creación, lectura, actualización de estados y eliminación de registros.
+  3. **Buscador de Administrador:** Filtrado dinámico de incidencias por `ID de Cliente`.
+  4. **Autenticación Segura:** Registro de usuarios, login con contraseñas encriptadas (`password_hash`) y protección de rutas mediante variables de Sesión.
+  5. **Persistencia (Cookies):** 
+      * Sistema de auto-login para mantener la sesión iniciada automáticamente.
+      * Personalización del color de fondo de la interfaz, guardado de forma individual para cada usuario en su navegador.
+     
+## Pasos para la Instalación y Despliegue
 
-    Tenemos que tener nuestro Contenedor de Docker en marcha y que contenca XAMP, PHPmyadmin
-    una vez dentro entramos a nuestro explorador y escribimos en la zona de la URL http://localhost:8000/raizdelPoyecto  donde se guarda nuestro codigo del proyecto dentro del contenedor
+**PASO 1: Descargar el proyecto**
 
-    Dentro de la web Podremos crear usuarios Clientes o Administrador en nuestro formulario de registro para dar de alta.
-    Una vez creados nos deveremos logear con ellos, pero los Administradores pueden hacer funciones que los clientes no pueden de normal.
+Descarga los archivos proporcionados y ubícalos en la carpeta correspondiente de tu servidor local o en la carpeta montada en tu Docker.
 
-    Los administradores veran todo el listado de Incidentes, ademas de poder borrar el incidente de cualquier usuario cliente y modificar el estado de la incidencia dependido de si esta Abierta, En Proceso o Resuelta
+**PASO 2: Importar la Base de Datos**
+
+En la raíz del proyecto encontrarás el archivo `gestor_incidencias.sql`. Importa este archivo en tu gestor de bases de datos. 
+*Nota: El script contiene las sentencias necesarias para crear automáticamente la base de datos y todas sus tablas relacionadas, no es necesario crearla a mano.*
+
+**PASO 3: Credenciales De la BD**
+
+Las credenciales de conexión a la base de datos se gestionan desde el archivo `conf.json`.
+
+    {
+        "host": "db",
+        "db": "gestor_incidencias",
+        "userName": "root",
+        "password": "test"
+    }
+
+**PASO 4: Puesta en marcha**
+
+    Asegúrate de tener tu contenedor de Docker.
+
+    Abre tu navegador web e introduce la URL hacia el directorio público del proyecto. 
+
+## Guía Rápida de Pruebas
+
+    1.Registro: Accede a la web y registra al menos dos usuarios (un Cliente y un Administrador).
+    2.Prueba de Cliente: Inicia sesión con el cliente. Crea un par de incidencias. Observa que solo puedes ver tus propios tickets y no puedes modificarlos ni borrarlos. Aprovecha para cambiar el color de fondo usando la paleta de colores
+    3.Prueba de Administrador: Cierra sesión e inicia con la cuenta del administrador.
+
+        *Podrás ver las incidencias del cliente que acabas de crear.
+
+        *Modifica el estado de alguna de ellas (Abierta, En Proceso, Resuelta).
+
+        *Utiliza el nuevo buscador por ID introduciendo el ID del cliente.
+
+        *Elimina un registro para comprobar el borrado en cascada.
+
+    4.Prueba de Persistencia: Cierra el navegador por completo sin cerrar sesión en la web.
