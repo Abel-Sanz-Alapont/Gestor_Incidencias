@@ -27,7 +27,8 @@ class IncidenciasManager
             $sql = "SELECT * FROM incidencias WHERE id_cliente = ? ORDER BY id DESC";
             $stmt = $this->db->prepare($sql);
 
-            $stmt->execute([$id_usuario]);
+           $stmt->bindValue(':id_cliente', $id_usuario,PDO::PARAM_INT);
+           $stmt->execute();
         }
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -40,30 +41,39 @@ class IncidenciasManager
 
         $stmt = $this->db->prepare($sql);
 
-        return $stmt->execute([$id_cliente, $titulo, $descripcion]);
+        $stmt->bindValue(':id_cliente', $id_cliente, PDO::PARAM_INT);
+        $stmt->bindValue(':titulo', $titulo, PDO::PARAM_STR);
+        $stmt->bindValue(':descripcion', $descripcion, PDO::PARAM_STR);
+
+        return $stmt->execute();
     }
 
     public function actualizarEstado($estado, $id)
     {
         $sql = "UPDATE incidencias SET estado = ? WHERE id= ?";
         $stmt = $this->db->prepare($sql);
-        return $stmt->execute([$estado, $id]);
+        $stmt->bindValue(':estado', $estado, PDO::PARAM_STR);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+        return $stmt->execute();
     }
 
     public function eliminarIncidencia($id)
     {
         $sql = "DELETE FROM incidencias WHERE id=?";
         $stmt = $this->db->prepare($sql);
-        return $stmt->execute([$id]);
+        $stmt->bindValue(':id', $id,PDO::PARAM_INT);
+
+        return $stmt->execute();
     }
 
     public function buscarIncidenciaPorIdUsuario($id_cliente)
     {
         $sql = "SELECT incidencias.*, usuarios.nombre AS nombre_cliente FROM incidencias JOIN usuarios ON incidencias.id_cliente = usuarios.id WHERE incidencias.id_cliente = ? ORDER BY incidencias.id DESC";
-        $stmt =$this->db->prepare($sql);
-        $stmt->execute([$id_cliente]);
-        
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id_cliente', $id_cliente, PDO::PARAM_INT);
+        $stmt->execute();
 
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
