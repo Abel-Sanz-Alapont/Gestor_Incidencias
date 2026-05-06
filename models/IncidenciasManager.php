@@ -24,7 +24,7 @@ class IncidenciasManager
             $stmt->execute();
         } else {
             // si es cliente solo ve sus propias incidencias
-            $sql = "SELECT * FROM incidencias WHERE id_cliente = id_cliente ORDER BY id DESC";
+            $sql = "SELECT * FROM incidencias WHERE id_cliente =:id_cliente ORDER BY id DESC";
             $stmt = $this->db->prepare($sql);
 
            $stmt->bindValue(':id_cliente', $id_usuario,PDO::PARAM_INT);
