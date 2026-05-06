@@ -24,7 +24,7 @@ class IncidenciasManager
             $stmt->execute();
         } else {
             // si es cliente solo ve sus propias incidencias
-            $sql = "SELECT * FROM incidencias WHERE id_cliente = ? ORDER BY id DESC";
+            $sql = "SELECT * FROM incidencias WHERE id_cliente = id_cliente ORDER BY id DESC";
             $stmt = $this->db->prepare($sql);
 
            $stmt->bindValue(':id_cliente', $id_usuario,PDO::PARAM_INT);
@@ -37,7 +37,7 @@ class IncidenciasManager
     public function crearIncidencia($id_cliente, $titulo, $descripcion)
     {
         $sql = "INSERT INTO incidencias (id_cliente, titulo, descripcion, estado) 
-            VALUES (?, ?, ?, 'abierta')";
+            VALUES (:id_cliente, :titulo, :descripcion, 'abierta')";
 
         $stmt = $this->db->prepare($sql);
 
@@ -50,7 +50,7 @@ class IncidenciasManager
 
     public function actualizarEstado($estado, $id)
     {
-        $sql = "UPDATE incidencias SET estado = ? WHERE id= ?";
+        $sql = "UPDATE incidencias SET estado = :estado WHERE id= :id";
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':estado', $estado, PDO::PARAM_STR);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
@@ -60,7 +60,7 @@ class IncidenciasManager
 
     public function eliminarIncidencia($id)
     {
-        $sql = "DELETE FROM incidencias WHERE id=?";
+        $sql = "DELETE FROM incidencias WHERE id=:id";
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':id', $id,PDO::PARAM_INT);
 
@@ -69,7 +69,7 @@ class IncidenciasManager
 
     public function buscarIncidenciaPorIdUsuario($id_cliente)
     {
-        $sql = "SELECT incidencias.*, usuarios.nombre AS nombre_cliente FROM incidencias JOIN usuarios ON incidencias.id_cliente = usuarios.id WHERE incidencias.id_cliente = ? ORDER BY incidencias.id DESC";
+        $sql = "SELECT incidencias.*, usuarios.nombre AS nombre_cliente FROM incidencias JOIN usuarios ON incidencias.id_cliente = usuarios.id WHERE incidencias.id_cliente = :id_cliente ORDER BY incidencias.id DESC";
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':id_cliente', $id_cliente, PDO::PARAM_INT);
         $stmt->execute();
