@@ -28,7 +28,6 @@ Descarga los archivos proporcionados y ubícalos en la carpeta correspondiente d
 **PASO 2: Importar la Base de Datos**
 
 En la raíz del proyecto encontrarás el archivo `gestor_incidencias.sql`. Importa este archivo en tu gestor de bases de datos. 
-*Nota: El script contiene las sentencias necesarias para crear automáticamente la base de datos y todas sus tablas relacionadas, no es necesario crearla a mano.*
 
 **PASO 3: Credenciales De la BD**
 
