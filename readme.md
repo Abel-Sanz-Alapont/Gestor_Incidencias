@@ -62,3 +62,5 @@ Las credenciales de conexión a la base de datos se gestionan desde el archivo `
         *Eliminar un registro.
 
     4.Prueba de Persistencia: Cierra el navegador por completo sin cerrar y logea con el usuario para verificar que el color de fondo sigue con el que escogiste.
+    
+**5 Para acceder a cualquier usuario que ya esta creado en la BD hay que usar su email y su password TODAS LAS PASSWORD SON 1234**
