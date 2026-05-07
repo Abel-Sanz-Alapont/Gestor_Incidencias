@@ -53,12 +53,12 @@ Las credenciales de conexión a la base de datos se gestionan desde el archivo `
     2.Prueba de Cliente: Inicia sesión con el cliente. Crea un par de incidencias. Observa que solo puedes ver tus propios tickets y no puedes modificarlos ni borrarlos. Aprovecha para cambiar el color de fondo usando la paleta de colores
     3.Prueba de Administrador: Cierra sesión e inicia con la cuenta del administrador.
 
-        *Podrás ver las incidencias del cliente que acabas de crear.
+        *Podrás ver las incidencias del cliente que acaba de crear.
 
         *Modifica el estado de alguna de ellas (Abierta, En Proceso, Resuelta).
 
-        *Utiliza el nuevo buscador por ID introduciendo el ID del cliente.
+        *Utiliza el  buscador por ID introduciendo el ID del cliente.
 
-        *Elimina un registro para comprobar el borrado en cascada.
+        *Eliminar un registro.
 
-    4.Prueba de Persistencia: Cierra el navegador por completo sin cerrar sesión en la web.
+    4.Prueba de Persistencia: Cierra el navegador por completo sin cerrar y logea con el usuario para verificar que el color de fondo sigue con el que escogiste.
